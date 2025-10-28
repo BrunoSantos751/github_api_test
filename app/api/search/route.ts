@@ -1,16 +1,11 @@
 import { NextResponse } from 'next/server';
 import { Octokit } from '@octokit/rest';
 
-// Instanciar o Octokit com nosso token de API
-// Ele automaticamente busca de 'process.env.GITHUB_TOKEN'
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
 
-/**
- * Nosso handler da API de busca.
- * Ele recebe uma query ?q=... do frontend.
- */
+// Rota GET para buscar repositórios com base na query ( q ) do usuário
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const userQuery = searchParams.get('q'); // Pega ?q=... da URL
@@ -19,7 +14,7 @@ export async function GET(request: Request) {
   if (!userQuery) {
     return NextResponse.json(
       { error: 'Parâmetro "q" de busca é obrigatório' },
-      { status: 400 } // 400 = Bad Request
+      { status: 400 } 
     );
   }
 
@@ -33,6 +28,7 @@ export async function GET(request: Request) {
     const combinedQuery = `${userQuery} pushed:>${aWeekAgo}`;
 
     // 4. Chamar a API do GitHub
+    // rota utilizada pelo octokit: https://api.github.com/search/repositories?q=${encodeURIComponent(combinedQuery)}&sort=updated&order=desc
     const response = await octokit.search.repos({
       q: combinedQuery,
       sort: 'updated', // Ordenar pelos mais atualizados
