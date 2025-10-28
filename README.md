@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Buscador de Repositórios Ativos no GitHub
 
-## Getting Started
+Este é um aplicativo web simples para encontrar repositórios no GitHub que tiveram atividade recente (push nos últimos 7 dias), com base em uma consulta de busca.
 
-First, run the development server:
+O principal objetivo deste projeto é demonstrar o uso de Rotas de API do Next.js para atuar como um "proxy seguro" para uma API externa (a API do GitHub), protegendo chaves de API sensíveis (como o Token de Acesso Pessoal - PAT).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✨ Funcionalidades
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Busca Segura: O frontend (cliente) nunca expõe o token da API do GitHub.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    Filtro de Atividade: Os resultados incluem apenas repositórios que tiveram um push nos últimos 7 dias.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    Ordenação: Os resultados são ordenados pelos mais recentemente atualizados (updated: 'desc').
 
-## Learn More
+    Interface Reativa: Construído com React e Tailwind CSS, com estados de "carregando", "erro" e "resultados".
 
-To learn more about Next.js, take a look at the following resources:
+🛠️ Stack Utilizada
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Framework: Next.js (com App Router)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    Linguagem: TypeScript
 
-## Deploy on Vercel
+    Frontend: React (Hooks useState)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Backend: Next.js API Routes (Serverless Functions)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    Estilização: Tailwind CSS
+
+    API do GitHub: Octokit (@octokit/rest)
