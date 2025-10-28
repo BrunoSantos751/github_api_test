@@ -28,7 +28,7 @@ export async function GET(request: Request) {
     const combinedQuery = `${userQuery} pushed:>${aWeekAgo}`;
 
     // 4. Chamar a API do GitHub
-    // rota utilizada pelo octokit: https://api.github.com/search/repositories?q=${encodeURIComponent(combinedQuery)}&sort=updated&order=desc
+    // rota utilizada pelo octokit: https://api.github.com/search/repositories?q=${encodeURIComponent(combinedQuery)}&sort=updated&order=desc&per_page=20
     const response = await octokit.search.repos({
       q: combinedQuery,
       sort: 'updated', // Ordenar pelos mais atualizados
